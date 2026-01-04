@@ -152,7 +152,7 @@ if (!isset($_SESSION['admin_id'])) {
             font-weight: 600;
         }
     </style>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="sidebar">
@@ -161,8 +161,8 @@ if (!isset($_SESSION['admin_id'])) {
             <small>Admin Panel</small>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="employees.php"><i class="fas fa-users"></i> Manage Employees</a></li>
+            <li><a href="dashboard" class="<?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="employees" class="<?php echo basename($_SERVER['PHP_SELF']) == 'employees.php' ? 'active' : ''; ?>"><i class="fas fa-users"></i> Manage Employees</a></li>
             <li><a href="#" data-bs-toggle="collapse" data-bs-target="#reportsMenu"><i class="fas fa-chart-bar"></i> Reports <i class="fas fa-chevron-down float-end"></i></a>
                 <ul class="collapse list-unstyled ps-4" id="reportsMenu">
                     <li><a href="reports/user_tracking.php"><i class="fas fa-user-clock"></i> User Tracking</a></li>
@@ -172,8 +172,8 @@ if (!isset($_SESSION['admin_id'])) {
                     <li><a href="reports/idle_time_analysis.php"><i class="fas fa-clock"></i> Idle Time Analysis</a></li>
                 </ul>
             </li>
-            <li><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="settings" class="<?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
     
