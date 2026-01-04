@@ -129,36 +129,6 @@ try {
             break;
         
         // ==========================================
-        // URL USAGE (New for Dashboard)
-        // ==========================================
-        case 'url_usage':
-            if ($employee_id) {
-                $stmt = $conn->prepare("
-                    SELECT u.url_title, SUM(u.time_spent) as time_spent, u.category
-                    FROM url_logs u
-                    JOIN tracking_sessions t ON u.tracking_session_id = t.id
-                    WHERE t.employee_id = ? AND t.date = ?
-                    GROUP BY u.url_title
-                    ORDER BY time_spent DESC
-                    LIMIT 10
-                ");
-                $stmt->execute([$employee_id, $date]);
-            } else {
-                $stmt = $conn->prepare("
-                    SELECT u.url_title, SUM(u.time_spent) as time_spent, u.category
-                    FROM url_logs u
-                    JOIN tracking_sessions t ON u.tracking_session_id = t.id
-                    WHERE t.date = ?
-                    GROUP BY u.url_title
-                    ORDER BY time_spent DESC
-                    LIMIT 10
-                ");
-                $stmt->execute([$date]);
-            }
-            echo json_encode($stmt->fetchAll());
-            break;
-
-        // ==========================================
         // DAILY ATTENDANCE (Attendance Report)
         // ==========================================
         case 'daily_attendance':
@@ -233,16 +203,29 @@ try {
         // URL TRACKING (Website Usage)
         // ==========================================
         case 'url_tracking':
-            $stmt = $conn->prepare("
-                SELECT u.url_title, SUM(u.time_spent) as time_spent, u.category
-                FROM url_logs u
-                JOIN tracking_sessions t ON u.tracking_session_id = t.id
-                WHERE t.employee_id = ? AND t.date = ?
-                GROUP BY u.url_title, u.category
-                ORDER BY time_spent DESC
-                LIMIT 15
-            ");
-            $stmt->execute([$employee_id, $date]);
+            if ($employee_id) {
+                $stmt = $conn->prepare("
+                    SELECT u.url_title, SUM(u.time_spent) as time_spent, u.category
+                    FROM url_logs u
+                    JOIN tracking_sessions t ON u.tracking_session_id = t.id
+                    WHERE t.employee_id = ? AND t.date = ?
+                    GROUP BY u.url_title, u.category
+                    ORDER BY time_spent DESC
+                    LIMIT 15
+                ");
+                $stmt->execute([$employee_id, $date]);
+            } else {
+                $stmt = $conn->prepare("
+                    SELECT u.url_title, SUM(u.time_spent) as time_spent, u.category
+                    FROM url_logs u
+                    JOIN tracking_sessions t ON u.tracking_session_id = t.id
+                    WHERE t.date = ?
+                    GROUP BY u.url_title, u.category
+                    ORDER BY time_spent DESC
+                    LIMIT 10
+                ");
+                $stmt->execute([$date]);
+            }
             echo json_encode($stmt->fetchAll());
             break;
         

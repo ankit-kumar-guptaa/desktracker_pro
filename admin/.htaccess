@@ -1,8 +1,0 @@
-RewriteEngine On
-
-# Allow access to existing files and directories
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Rewrite everything else to index.php or handle extension removal
-RewriteRule ^([a-z0-9-_]+)/?$ $1.php [L]
