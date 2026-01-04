@@ -187,6 +187,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <ul class="sidebar-menu">
             <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="live_monitor.php"><i class="fas fa-video"></i> Live Monitor <span class="badge bg-danger ms-1" style="font-size: 10px;">LIVE</span></a></li>
             <li><a href="employees.php"><i class="fas fa-users"></i> Manage Employees</a></li>
             <li><a href="#" data-bs-toggle="collapse" data-bs-target="#reportsMenu"><i class="fas fa-chart-bar"></i> Reports <i class="fas fa-chevron-down float-end"></i></a>
                 <ul class="collapse list-unstyled ps-4" id="reportsMenu">
