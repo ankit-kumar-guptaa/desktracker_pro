@@ -69,6 +69,19 @@ try {
             break;
         
         // ==========================================
+        // BREAK LOGS (User Tracking Report)
+        // ==========================================
+        case 'break_logs':
+            $stmt = $conn->prepare("
+                SELECT * FROM break_logs 
+                WHERE employee_id = ? AND date = ?
+                ORDER BY start_time DESC
+            ");
+            $stmt->execute([$employee_id, $date]);
+            echo json_encode($stmt->fetchAll());
+            break;
+
+        // ==========================================
         // TOP PRODUCTIVE USERS (Dashboard)
         // ==========================================
         case 'top_users':

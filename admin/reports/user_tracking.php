@@ -65,6 +65,25 @@
         </div>
     </div>
     
+    <!-- Break History -->
+    <div class="chart-container" id="breaksTable" style="display: none; margin-top: 20px;">
+        <h5 class="mb-3"><i class="fas fa-mug-hot"></i> Break History</h5>
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Break ID</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="breaksList">
+                <tr><td colspan="5" class="text-center">No data available</td></tr>
+            </tbody>
+        </table>
+    </div>
+
     <!-- Login/Logout Sessions -->
     <div class="chart-container" id="sessionsTable" style="display: none;">
         <h5 class="mb-3"><i class="fas fa-sign-in-alt"></i> Login/Logout Sessions</h5>
@@ -112,6 +131,7 @@ async function loadReport() {
     // Show stats cards
     document.getElementById('statsCards').style.display = 'flex';
     document.getElementById('sessionsTable').style.display = 'block';
+    document.getElementById('breaksTable').style.display = 'block';
     
     // Fetch tracking data
     const response = await fetch(`../../api/reports.php?type=employee_details&employee_id=${empId}&date=${date}`);
@@ -138,6 +158,31 @@ async function loadReport() {
         document.getElementById('productivity').textContent = productivity + '%';
     }
     
+    // Load break history
+    const breaksResponse = await fetch(`../../api/reports.php?type=break_logs&employee_id=${empId}&date=${date}`);
+    const breaks = await breaksResponse.json();
+    
+    let breaksHtml = '';
+    if (breaks && breaks.length > 0) {
+        breaks.forEach(brk => {
+            const duration = brk.duration ? Math.floor(brk.duration / 60) + ' min' : 'Active';
+            const status = brk.end_time ? '<span class="badge bg-success">Completed</span>' : '<span class="badge bg-warning">On Break</span>';
+            
+            breaksHtml += `
+                <tr>
+                    <td>#${brk.id}</td>
+                    <td>${new Date(brk.start_time).toLocaleTimeString()}</td>
+                    <td>${brk.end_time ? new Date(brk.end_time).toLocaleTimeString() : '-'}</td>
+                    <td>${duration}</td>
+                    <td>${status}</td>
+                </tr>
+            `;
+        });
+    } else {
+        breaksHtml = '<tr><td colspan="5" class="text-center">No breaks recorded for this date</td></tr>';
+    }
+    document.getElementById('breaksList').innerHTML = breaksHtml;
+
     // Load login sessions
     const sessionsResponse = await fetch(`../../api/reports.php?type=login_sessions&employee_id=${empId}&date=${date}`);
     const sessions = await sessionsResponse.json();
