@@ -1,5 +1,5 @@
 <?php
-define('DB_HOST', 'srv1086.hstgr.io');
+define('DB_HOST', 'localhost');
 define('DB_USER', 'u141142577_desktracker');
 define('DB_PASS', 'Ankit@1925050@');
 define('DB_NAME', 'u141142577_desktracker');
