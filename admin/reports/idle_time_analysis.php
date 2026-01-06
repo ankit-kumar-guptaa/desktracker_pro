@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include __DIR__ . '/../includes/header.php'; ?>
 
 <div class="chart-container">
     <h4 class="mb-4"><i class="fas fa-clock"></i> Idle Time Analysis</h4>
@@ -106,4 +106,4 @@ async function loadReport() {
 loadReport();
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

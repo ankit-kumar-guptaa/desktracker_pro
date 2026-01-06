@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include __DIR__ . '/../includes/header.php'; ?>
 
 <style>
     /* Custom Styling for Screenshot Gallery */
@@ -385,4 +385,4 @@ function openModal(imagePath, capturedAt) {
 loadEmployees();
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

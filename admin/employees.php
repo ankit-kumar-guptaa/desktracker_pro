@@ -1,4 +1,4 @@
-<?php include 'includes/header.php'; ?>
+<?php include __DIR__ . '/includes/header.php'; ?>
 
 <div class="chart-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -442,4 +442,4 @@ async function deleteEmployee(id) {
 loadEmployees();
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>

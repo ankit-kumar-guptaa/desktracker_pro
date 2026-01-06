@@ -74,7 +74,7 @@
                 const result = await response.json();
                 
                 if (result.status === 'success') {
-                    window.location.href = 'dashboard.php';
+                    window.location.href = 'dashboard';
                 } else {
                     document.getElementById('errorMsg').textContent = result.message;
                     document.getElementById('errorMsg').classList.remove('d-none');

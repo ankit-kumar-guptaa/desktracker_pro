@@ -1,4 +1,4 @@
-<?php include 'includes/header.php'; ?>
+<?php include __DIR__ . '/includes/header.php'; ?>
 
 <style>
     /* Scoped variables for Live Monitor to avoid conflicts with global header styles */
@@ -577,4 +577,4 @@ window.addEventListener('beforeunload', () => {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>

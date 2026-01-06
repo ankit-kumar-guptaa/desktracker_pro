@@ -1,4 +1,4 @@
-<?php include 'includes/header.php'; ?>
+<?php include __DIR__ . '/includes/header.php'; ?>
 
 <div class="chart-container">
     <h4 class="mb-4"><i class="fas fa-cog"></i> System Settings</h4>
@@ -158,4 +158,4 @@ window.addEventListener('load', function() {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>
