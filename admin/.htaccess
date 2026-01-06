@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /desktracker_API_Admin/admin/
+# RewriteBase /desktracker_API_Admin/admin/
 
 # Don't rewrite files or directories that exist
 RewriteCond %{REQUEST_FILENAME} !-f
